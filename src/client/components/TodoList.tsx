@@ -98,7 +98,12 @@ export const TodoList = ({ filter }: Props) => {
     <ul className="grid grid-cols-1 gap-y-3" ref={animationParent}>
       {todos.map((todo) => (
         <li key={todo.id}>
-          <div className="flex items-center rounded-12 border border-gray-200 px-4 py-3 shadow-sm">
+          <div
+            className={clsx(
+              'flex items-center rounded-12 border border-gray-200 px-4 py-3 shadow-sm',
+              todo.status === 'completed' && 'bg-gray-50'
+            )}
+          >
             <Checkbox.Root
               checked={todo.status === 'completed'}
               onCheckedChange={(checked) =>
