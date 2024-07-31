@@ -26,6 +26,16 @@ const Index = () => {
     setFilter(value as 'all' | 'pending' | 'completed')
   }
 
+  const TabContent = ({
+    value,
+  }: {
+    value: 'all' | 'pending' | 'completed'
+  }) => (
+    <Tabs.Content value={value}>
+      <TodoList filter={value} />
+    </Tabs.Content>
+  )
+
   return (
     <main className="mx-auto w-[480px] pt-12">
       <div className="rounded-12 bg-white p-8 shadow-sm">
@@ -33,7 +43,7 @@ const Index = () => {
           Todo App
         </h1>
 
-        <Tabs.Root value={filter} onValueChange={handleValueChange}>
+        <Tabs.Root defaultValue="all" onValueChange={handleValueChange}>
           <Tabs.List
             aria-label="Filter todos"
             className="mb-10 mt-10 flex gap-2"
@@ -67,15 +77,9 @@ const Index = () => {
             </Tabs.Trigger>
           </Tabs.List>
 
-          <Tabs.Content value="all">
-            <TodoList filter="all" />
-          </Tabs.Content>
-          <Tabs.Content value="pending">
-            <TodoList filter="pending" />
-          </Tabs.Content>
-          <Tabs.Content value="completed">
-            <TodoList filter="completed" />
-          </Tabs.Content>
+          <TabContent value="all" />
+          <TabContent value="pending" />
+          <TabContent value="completed" />
         </Tabs.Root>
 
         <div className="pt-10">
