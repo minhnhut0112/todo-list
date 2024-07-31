@@ -1,6 +1,7 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import * as Checkbox from '@radix-ui/react-checkbox'
 import { type SVGProps } from 'react'
+import clsx from 'clsx'
 
 import { api } from '@/utils/client/api'
 
@@ -116,9 +117,10 @@ export const TodoList = ({ filter }: Props) => {
             </Checkbox.Root>
 
             <label
-              className={`block pl-3 font-medium ${
+              className={clsx(
+                'block pl-3 font-medium',
                 todo.status === 'completed' && 'text-gray-500 line-through'
-              }`}
+              )}
               htmlFor={String(todo.id)}
             >
               {todo.body}
